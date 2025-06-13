@@ -1,11 +1,18 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
+const path = require('path');
 const app = express();
 const PORT = 3000;
 
 app.use(express.json());
 app.use(cookieParser());
-app.use(express.static('../static'));
+
+// Wichtig: erlaubt statische Dateien aus /static
+app.use(express.static(path.join(__dirname, '..', 'static')));
+
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'static', 'frontend.html'));
+});
 
 // Brownian Path Generator
 function generateBrownianPath(steps, stepSize, originX, originY) {
