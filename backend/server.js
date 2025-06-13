@@ -7,7 +7,6 @@ const PORT = 3000;
 app.use(express.json());
 app.use(cookieParser());
 
-// Wichtig: erlaubt statische Dateien aus /static
 app.use(express.static(path.join(__dirname, '..', 'static')));
 
 app.get('/', (req, res) => {
@@ -35,7 +34,7 @@ function generateBrownianPath(steps, stepSize, originX, originY) {
 app.post('/generate', (req, res) => {
   const { stepSize, steps, color, canvasWidth, canvasHeight } = req.body;
 
-  // Eingabe validieren
+  // Validierung
   if (
     typeof stepSize !== 'number' || stepSize < 1 || stepSize > 1000 ||
     typeof steps !== 'number' || steps < 10 || steps > 1000000 ||
@@ -86,7 +85,6 @@ app.get('/api/noise/:id', (req, res) => {
   res.json(found);
 });
 
-// Cookies beim Laden zurückgeben
 app.get('/load-cookies', (req, res) => {
   res.json({
     stepSize: parseFloat(req.cookies.lastStepSize) || '',
