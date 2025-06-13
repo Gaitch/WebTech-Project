@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Brownify - Brownian Noise Visualizer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- Navigation -->
+<header>
+  <nav class="w3-bar w3-dark-grey w3-top" role="navigation">
+    <a href="#info" class="w3-bar-item w3-button w3-mobile">Info</a>
+    <a href="#input" class="w3-bar-item w3-button w3-mobile">Input</a>
+    <a href="#output" class="w3-bar-item w3-button w3-mobile">Output</a>
+    <button class="w3-button w3-dark-grey w3-right" onclick="submitNoise()">Generieren</button>
+  </nav>
+</header>
+
+<!-- Info-Bereich -->
+<section id="info" class="w3-container w3-light-grey w3-padding-32">
+  <h2>Was ist Brownify?</h2>
+<p>
+  <strong>Brownify</strong> visualisiert eine Brown'sche Bewegung, also ein zufälliger 2D-Pfad, der sich Schritt für Schritt über das Canvas bewegt.<br>
+  Die Parameter Schrittweite, Anzahl Schritte und Linienfarbe bestimmen dabei das Aussehen der Bewegung.<br>
+  <br>
+  Grosse Werte führen oft zu besonders spannenden und dichten Mustern. Die Berechnung kann in diesen Fällen etwas länger dauern,  
+  dafür entstehen visuell interessante und komplexe Ergebnisse.
+</p>
+  <div class="w3-center">
+    <img src="img/info.png" alt="Beispielhafte Darstellung von Brownian Noise"  style="max-width:45%; height:auto;">
+  </div>
+</section>
+
+<!-- Eingabebereich -->
+<section id="input" class="w3-container w3-white w3-padding-32">
+  <h2>Generiere deinen eigenen Pfad</h2>
+  <form id="noiseForm" onsubmit="return false;">
+    <label for="stepSize">Schrittweite (10-1000):</label>
+    <input class="w3-input w3-margin-bottom" type="number" id="stepSize" name="stepSize" min="10" max="1000" required>
+
+    <label for="steps">Anzahl Schritte (10-1000000):</label>
+    <input class="w3-input w3-margin-bottom" type="range" id="steps" name="steps" min="10" max="1000000" value="200">
+
+    <label for="lineColor">Linienfarbe:</label>
+    <input class="w3-input w3-margin-bottom" type="color" id="lineColor" name="lineColor" value="#007acc">
+
+    <button class="w3-button w3-dark-grey" onclick="submitNoise()">Generieren</button>
+  </form>
+  <div id="formErrors" class="w3-text-red w3-margin-top"></div>
+</section>
+
+<!-- Ausgabebereich -->
+<section id="output" class="w3-container w3-light-grey w3-padding-32">
+  <h2>Dein Brownian Noise</h2>
+  <canvas id="noiseCanvas" width="600" height="400" style="max-height:100%; width:auto;" class="w3-border w3-white"></canvas>
+  <div id="jsonOutput" class="w3-margin-top"></div>
+</section>
+
+<!-- Footer -->
+<footer class="w3-container w3-dark-grey w3-center w3-padding-16">
+  <p>© 2025 Brownify</p>
+</footer>
+
+<script src="js/script.js"></script>
+</body>
+</html>
